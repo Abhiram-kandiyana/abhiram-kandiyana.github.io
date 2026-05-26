@@ -51,10 +51,10 @@ export const iconLinks = [
 ];
 
 export const about = [
-  "I am a PhD candidate in Computer Science and Engineering at the University of South Florida, where I work on AI methods for microscopy image understanding and biomedical image analysis. My research sits at the intersection of computer vision, deep learning, multimodal modeling, and practical scientific tooling.",
-  "Across more than four years of research experience, I have focused on building systems that make large vision-language models more useful in expert-facing settings. This includes prompting and tuning strategies for microscopy classification, explainability workflows for human-in-the-loop analysis, and efficient pipelines that reduce annotation effort while preserving strong empirical performance.",
-  "Beyond model development, I am interested in translating research into usable infrastructure. My work has included deployment on AWS, containerized inference with Docker, and GPU-based serving environments that make models available to collaborators and research teams.",
-];
+  "I’m Abhiram Kandiyana, a Ph.D. candidate in Artificial Intelligence at the University of South Florida. My research is mainly about making foundation LLMs useful in specialized, high-stakes settings like biomedical microscopy, where labeled data is limited and expert annotation is expensive.", 
+  "I’ve also worked on the systems side, building deployment pipelines with Docker, AWS, and vLLM to make these methods usable in practice. And outside academia, as a co-founder and founding engineer at Mindlr, I led a team building a RAG-based AI search system using LangChain, Pinecone, AWS, and Hugging Face models.",
+  "A common thread across all of this is that I like working on messy problems where the data is noisy, the labels are expensive, and success comes from designing the pipeline carefully, evaluating it the way the end user would.",
+  ];
 
 export const researchAreas = [
   {
