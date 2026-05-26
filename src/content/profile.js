@@ -4,7 +4,7 @@ export const profile = {
   institution: "University of South Florida",
   institutionSubline:
     "Bellini College of Artificial Intelligence, Cybersecurity and Computing",
-  location: "Tampa, FL",
+  location: "New York City, NY",
   tagline:
     "Researching efficient vision-language systems for microscopy, medical image analysis, and deployable scientific AI.",
 };
@@ -18,7 +18,7 @@ export const contactCards = [
   {
     icon: "location",
     label: "Location",
-    value: "Tampa, Florida",
+    value: "New York City, NY",
   },
 ];
 
@@ -43,11 +43,11 @@ export const iconLinks = [
     label: "LinkedIn",
     url: "https://www.linkedin.com/in/abhiram-kandiyana-239029169/",
   },
-  {
-    icon: "x",
-    label: "X",
-    url: "https://x.com/codemastery_hq",
-  },
+  // {
+  //   icon: "x",
+  //   label: "X",
+  //   url: "https://x.com/codemastery_hq",
+  // },
 ];
 
 export const about = [

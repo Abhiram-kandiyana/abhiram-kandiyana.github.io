@@ -60,6 +60,61 @@ function Icon({ name, className = "" }) {
     );
   }
 
+  if (name === "home") {
+    return (
+      <svg viewBox="0 0 24 24" className={classes} aria-hidden="true">
+        <path
+          d="M3.25 10.4 12 3.35l8.75 7.05v9.1a1.25 1.25 0 0 1-1.25 1.25h-5.25v-6.5h-4.5v6.5H4.5a1.25 1.25 0 0 1-1.25-1.25v-9.1Zm1.5.72v8.13h3.5v-6.5h7.5v6.5h3.5v-8.13L12 5.28 4.75 11.12Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
+  if (name === "user") {
+    return (
+      <svg viewBox="0 0 24 24" className={classes} aria-hidden="true">
+        <path
+          d="M12 12.5a4.75 4.75 0 1 1 0-9.5 4.75 4.75 0 0 1 0 9.5Zm0-1.5a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Zm-8.25 9.25c.2-4.2 3.67-7.5 8.25-7.5s8.05 3.3 8.25 7.5h-1.5c-.2-3.33-2.98-6-6.75-6s-6.55 2.67-6.75 6h-1.5Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
+  if (name === "briefcase") {
+    return (
+      <svg viewBox="0 0 24 24" className={classes} aria-hidden="true">
+        <path
+          d="M8.75 4.75A2.75 2.75 0 0 1 11.5 2h1A2.75 2.75 0 0 1 15.25 4.75V6h3.5A2.25 2.25 0 0 1 21 8.25v9.5A2.25 2.25 0 0 1 18.75 20H5.25A2.25 2.25 0 0 1 3 17.75v-9.5A2.25 2.25 0 0 1 5.25 6h3.5V4.75Zm1.5 1.25h3.5V4.75A1.25 1.25 0 0 0 12.5 3.5h-1a1.25 1.25 0 0 0-1.25 1.25V6Zm-5 1.5a.75.75 0 0 0-.75.75v3.2c1.87.85 4.46 1.3 7.5 1.3s5.63-.45 7.5-1.3v-3.2a.75.75 0 0 0-.75-.75H5.25Zm14.25 5.56c-1.97.78-4.53 1.19-7.5 1.19s-5.53-.41-7.5-1.19v4.69c0 .41.34.75.75.75h13.5c.41 0 .75-.34.75-.75v-4.69Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
+  if (name === "book") {
+    return (
+      <svg viewBox="0 0 24 24" className={classes} aria-hidden="true">
+        <path
+          d="M5.75 3h11.5A1.75 1.75 0 0 1 19 4.75v14.5A1.75 1.75 0 0 1 17.25 21H6.5A2.5 2.5 0 0 1 4 18.5V4.75A1.75 1.75 0 0 1 5.75 3ZM17.5 16.25V4.75a.25.25 0 0 0-.25-.25H5.75a.25.25 0 0 0-.25.25v11.63c.31-.09.65-.13 1-.13h11Zm0 1.5h-11a1 1 0 0 0 0 2h10.75a.25.25 0 0 0 .25-.25v-1.75ZM8 7h7v1.5H8V7Zm0 3h6v1.5H8V10Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
+  if (name === "award") {
+    return (
+      <svg viewBox="0 0 24 24" className={classes} aria-hidden="true">
+        <path
+          d="M12 2.5a6.25 6.25 0 0 1 3.95 11.1l1.34 6.25-5.29-2.6-5.29 2.6 1.34-6.25A6.25 6.25 0 0 1 12 2.5Zm0 1.5a4.75 4.75 0 1 0 0 9.5A4.75 4.75 0 0 0 12 4Zm-2.57 10.37-.65 3.05L12 15.84l3.22 1.58-.65-3.05A6.21 6.21 0 0 1 12 15a6.21 6.21 0 0 1-2.57-.63Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
   if (name === "scholar") {
     return (
       <svg viewBox="0 0 24 24" className={classes} aria-hidden="true">
@@ -202,7 +257,38 @@ function PublicationCard({ item }) {
 
 function App() {
   const [activeTab, setActiveTab] = useState("about");
+  const [activeMobileNav, setActiveMobileNav] = useState("home");
   const [theme, setTheme] = useState("light");
+  const sectionTabs = [
+    { id: "about", label: "About" },
+    { id: "academic", label: "Academic" },
+    { id: "publications", label: "Publications" },
+    { id: "awards", label: "Awards/Invitations" },
+  ];
+  const mobileNavItems = [
+    { id: "home", label: "Home", icon: "home" },
+    { id: "about", label: "About", icon: "user" },
+    { id: "academic", label: "Exp", fullLabel: "Experience", icon: "briefcase" },
+    { id: "publications", label: "Pubs", fullLabel: "Publications", icon: "book" },
+    { id: "awards", label: "Awards", icon: "award" },
+  ];
+  const scrollToProfile = () => {
+    setActiveMobileNav("home");
+    document.querySelector(".profile-sidebar")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+  const navigateToSection = (id) => {
+    setActiveTab(id);
+    setActiveMobileNav(id);
+    window.requestAnimationFrame(() => {
+      document.querySelector(".profile-main")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
   const publicationsByYear = publications.reduce((acc, publication) => {
     if (!acc[publication.year]) {
       acc[publication.year] = [];
@@ -230,6 +316,21 @@ function App() {
           <p className="profile-role-pill">{profile.title}</p>
           <p className="hero-institution">{profile.institution}</p>
           <p className="hero-subline">{profile.institutionSubline}</p>
+          <div className="icon-link-row" aria-label="External links">
+            {iconLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                className="icon-link"
+                aria-label={link.label}
+                title={link.label}
+              >
+                <Icon name={link.icon} />
+              </a>
+            ))}
+          </div>
         </div>
 
         <SidebarBlock title="Profile">
@@ -247,22 +348,6 @@ function App() {
             ))}
           </div>
         </SidebarBlock>
-
-        <div className="icon-link-row" aria-label="External links">
-          {iconLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.url}
-              target="_blank"
-              rel="noreferrer"
-              className="icon-link"
-              aria-label={link.label}
-              title={link.label}
-            >
-              <Icon name={link.icon} />
-            </a>
-          ))}
-        </div>
       </aside>
 
       <main className="profile-main">
@@ -292,36 +377,18 @@ function App() {
             </span>
           </button>
 
-          <div className="section-tabs">
-          <button
-            type="button"
-            className={`section-tab ${activeTab === "about" ? "section-tab--active" : ""}`}
-            onClick={() => setActiveTab("about")}
-          >
-            About
-          </button>
-          <button
-            type="button"
-            className={`section-tab ${activeTab === "academic" ? "section-tab--active" : ""}`}
-            onClick={() => setActiveTab("academic")}
-          >
-            Academic
-          </button>
-          <button
-            type="button"
-            className={`section-tab ${activeTab === "publications" ? "section-tab--active" : ""}`}
-            onClick={() => setActiveTab("publications")}
-          >
-            Publications
-          </button>
-          <button
-            type="button"
-            className={`section-tab ${activeTab === "awards" ? "section-tab--active" : ""}`}
-            onClick={() => setActiveTab("awards")}
-          >
-            Awards/Invitations
-          </button>
-        </div>
+          <nav className="section-tabs" aria-label="Portfolio sections">
+          {sectionTabs.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`section-tab ${activeTab === item.id ? "section-tab--active" : ""}`}
+              onClick={() => navigateToSection(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
         </div>
 
         {activeTab === "about" ? (
@@ -508,6 +575,24 @@ function App() {
         )}
       </main>
       </div>
+      <nav className="mobile-bottom-nav" aria-label="Mobile portfolio sections">
+        {mobileNavItems.map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            className={`mobile-bottom-nav-item ${
+              activeMobileNav === item.id ? "mobile-bottom-nav-item--active" : ""
+            }`}
+            onClick={() =>
+              item.id === "home" ? scrollToProfile() : navigateToSection(item.id)
+            }
+            aria-label={item.fullLabel || item.label}
+          >
+            <Icon name={item.icon} />
+            <span>{item.label}</span>
+          </button>
+        ))}
+      </nav>
     </div>
   );
 }
