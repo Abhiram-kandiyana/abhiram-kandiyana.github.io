@@ -812,6 +812,10 @@ button {
   color: var(--muted);
 }
 
+.publication-venue-compact {
+  display: none;
+}
+
 .research-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -1106,17 +1110,25 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .publication-header-row {
-    grid-template-columns: 1fr;
+  .publication-thumb {
+    display: none;
   }
 
-  .publication-thumb-inner {
-    max-width: 140px;
+  .publication-header-row {
+    grid-template-columns: 1fr;
   }
 
   .publication-card-rich .list-subtitle,
   .publication-year-display {
     display: none;
+  }
+
+  .publication-venue-full {
+    display: none;
+  }
+
+  .publication-venue-compact {
+    display: inline;
   }
 
   .experience-title-row,
@@ -1127,6 +1139,14 @@ button {
   .experience-location {
     text-align: left;
     white-space: normal;
+  }
+
+  .award-copy p:last-child {
+    display: none;
+  }
+
+  .academic-section--experience .academic-detail {
+    display: none;
   }
 }
 

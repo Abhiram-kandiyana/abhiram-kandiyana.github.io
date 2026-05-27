@@ -228,7 +228,8 @@ function PublicationCard({ item }) {
             </h3>
             <p className="list-subtitle">{item.authors}</p>
             <p className="publication-venue">
-              <em>{item.venue}</em>
+              <em className="publication-venue-full">{item.venue}</em>
+              <em className="publication-venue-compact">{item.thumbnailLabel}</em>
             </p>
           </div>
           <p className="publication-year-display">{item.year}</p>
@@ -281,9 +282,6 @@ function App() {
   }, {});
   const sortedPublicationYears = Object.keys(publicationsByYear).sort(
     (a, b) => Number(b) - Number(a),
-  );
-  const teachingExperience = academicExperience.filter((item) =>
-    item.role.toLowerCase().includes("teaching"),
   );
   const researchExperience = academicExperience.filter(
     (item) => !item.role.toLowerCase().includes("teaching"),
@@ -437,7 +435,7 @@ function App() {
                 </div>
               </section>
 
-              <section className="academic-section">
+              <section className="academic-section academic-section--experience">
                 <h3 className="academic-heading">Industry Experience</h3>
                 <ol className="academic-list">
                   {industryExperience.map((item) => (
@@ -454,7 +452,7 @@ function App() {
                 </ol>
               </section>
 
-              <section className="academic-section">
+              <section className="academic-section academic-section--experience">
                 <h3 className="academic-heading">Research Experience</h3>
                 <ol className="academic-list">
                   {researchExperience.map((item) => (
@@ -480,23 +478,6 @@ function App() {
               </section>
 
               <section className="academic-section">
-                <h3 className="academic-heading">Teaching Experience</h3>
-                <ol className="academic-list">
-                  {teachingExperience.map((item) => (
-                    <li key={`${item.role}-${item.period}`} className="academic-item">
-                      <div className="experience-title-row">
-                        <h4>{item.role}</h4>
-                        <p className="experience-location">{item.location}</p>
-                      </div>
-                      <p className="academic-org">{item.organization}</p>
-                      <p className="academic-period">{item.period}</p>
-                      <p className="academic-detail">{item.details}</p>
-                    </li>
-                  ))}
-                </ol>
-              </section>
-
-              <section className="academic-section">
                 <h3 className="academic-heading">Education</h3>
                 <ol className="academic-list">
                   {education.map((item) => (
@@ -504,29 +485,6 @@ function App() {
                       <h4>{item.degree}</h4>
                       <p className="academic-org">{item.institution}</p>
                       <p className="academic-period">{item.period}</p>
-                      {item.details.map((detail) => (
-                        <p key={detail} className="academic-detail">
-                          {detail}
-                        </p>
-                      ))}
-                      {item.professors?.length ? (
-                        <p className="academic-detail">
-                          Major professors:{" "}
-                          {item.professors.map((professor, index) => (
-                            <span key={professor.name}>
-                              <a
-                                href={professor.url}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="academic-link"
-                              >
-                                {professor.name}
-                              </a>
-                              {index < item.professors.length - 1 ? ", " : ""}
-                            </span>
-                          ))}
-                        </p>
-                      ) : null}
                     </li>
                   ))}
                 </ol>
