@@ -76,6 +76,12 @@ export const about = [
   ],
   "Outside academia, I co-founded and was the founding engineer at a startup, where I led a team building a RAG-based AI search system using LangChain, Pinecone, vLLM, AWS, and Hugging Face.",
   [
+    {
+      text: "I am actively seeking Research Scientist roles.",
+      strong: true,
+    },
+    ],
+  [
     "You can find my CV ",
     {
       text: "here",

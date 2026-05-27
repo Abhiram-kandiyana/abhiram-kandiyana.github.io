@@ -191,6 +191,8 @@ function AboutParagraph({ paragraph }) {
       {paragraph.map((part, index) =>
         typeof part === "string" ? (
           part
+        ) : part.strong ? (
+          <strong key={`${part.text}-${index}`}>{part.text}</strong>
         ) : (
           <a key={`${part.url}-${index}`} href={part.url} target="_blank" rel="noreferrer">
             {part.text}
@@ -387,6 +389,16 @@ function App() {
                 <AboutParagraph key={index} paragraph={paragraph} />
               ))}
             </div>
+            <a
+              href="mailto:kandiyana@usf.edu"
+              className="about-email-callout"
+              aria-label="Email Abhiram Kandiyana"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>Email me</span>
+              <strong>kandiyana@usf.edu</strong>
+            </a>
 
             <div className="subsection-block">
               <h3 className="subsection-title">Research Interests</h3>
