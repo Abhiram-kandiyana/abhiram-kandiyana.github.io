@@ -109,6 +109,12 @@ button {
   gap: 18px;
 }
 
+@media (min-width: 961px) {
+  .profile-sidebar {
+    transform: translateX(-12px);
+  }
+}
+
 .profile-card,
 .sidebar-block,
 .content-section {
@@ -124,6 +130,10 @@ button {
   gap: 16px;
   justify-items: center;
   text-align: center;
+}
+
+.sidebar-block {
+  padding: 22px;
 }
 
 .profile-card h1,
@@ -197,7 +207,7 @@ button {
 }
 
 .sidebar-label {
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 0.78rem;
@@ -357,23 +367,23 @@ button {
 
 .contact-card-list {
   display: grid;
-  gap: 16px;
+  gap: 12px;
 }
 
 .contact-card {
   display: grid;
-  grid-template-columns: 54px minmax(0, 1fr);
-  gap: 14px;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px;
   align-items: center;
-  padding: 4px 0;
+  padding: 2px 0;
 }
 
 .contact-card-icon {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 16px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.03);
   color: var(--muted-strong);
 }
@@ -433,8 +443,8 @@ button {
 }
 
 .contact-card-icon .symbol-icon {
-  width: 26px;
-  height: 26px;
+  width: 23px;
+  height: 23px;
 }
 
 .content-section {
@@ -472,6 +482,13 @@ button {
 .prose-block--large {
   gap: 24px;
   max-width: 92ch;
+}
+
+.prose-block a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .highlight-grid {
@@ -776,6 +793,12 @@ button {
   gap: 8px;
 }
 
+.publication-title-link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
 .publication-year-display {
   margin: 0;
   color: var(--year-watermark);
@@ -787,54 +810,6 @@ button {
 .publication-venue {
   margin: 0;
   color: var(--muted);
-}
-
-.publication-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.publication-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px 12px;
-  min-width: 94px;
-  border: 1px solid rgba(127, 127, 127, 0.55);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--muted-strong);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.publication-action:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text);
-}
-
-.publication-action--button {
-  cursor: pointer;
-}
-
-.publication-action--active {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(255, 204, 102, 0.08);
-}
-
-.publication-panel {
-  padding: 18px 20px;
-  border: 1px dashed rgba(127, 127, 127, 0.55);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.publication-panel p {
-  margin: 0;
-  line-height: 1.75;
-  color: var(--muted-strong);
 }
 
 .research-layout {
@@ -1123,6 +1098,10 @@ button {
     gap: 6px;
   }
 
+  .compact-news .news-copy p {
+    display: none;
+  }
+
   .publication-card-rich {
     grid-template-columns: 1fr;
   }
@@ -1135,8 +1114,9 @@ button {
     max-width: 140px;
   }
 
+  .publication-card-rich .list-subtitle,
   .publication-year-display {
-    font-size: 2rem;
+    display: none;
   }
 
   .experience-title-row,

@@ -104,6 +104,17 @@ function Icon({ name, className = "" }) {
     );
   }
 
+  if (name === "resume") {
+    return (
+      <svg viewBox="0 0 24 24" className={classes} aria-hidden="true">
+        <path
+          d="M6.75 2.75h7.8l4.7 4.7v11.8A2.75 2.75 0 0 1 16.5 22h-9.75A2.75 2.75 0 0 1 4 19.25V5.5a2.75 2.75 0 0 1 2.75-2.75Zm7 1.5h-7A1.25 1.25 0 0 0 5.5 5.5v13.75c0 .69.56 1.25 1.25 1.25h9.75c.69 0 1.25-.56 1.25-1.25v-11h-4v-4Zm1.5 1.06V6.75h1.44l-1.44-1.44ZM8 10h7.5v1.5H8V10Zm0 3.25h7.5v1.5H8v-1.5Zm0 3.25h5v1.5H8v-1.5Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
   if (name === "award") {
     return (
       <svg viewBox="0 0 24 24" className={classes} aria-hidden="true">
@@ -162,43 +173,36 @@ function Icon({ name, className = "" }) {
   return null;
 }
 
-function PublicationActions({ links }) {
-  const items = [
-    { key: "pdf", label: "PDF" },
-    { key: "code", label: "Code" },
-    { key: "video", label: "Video" },
-    { key: "website", label: "Website" },
-    { key: "doi", label: "DOI" },
-    { key: "details", label: "Details" },
-  ].filter((item) => links?.[item.key]);
+function getPublicationLink(links) {
+  return links?.DOI || links?.doi
+    ? { label: "DOI", url: links.DOI || links.doi }
+    : links?.PDF || links?.pdf
+      ? { label: "PDF", url: links.PDF || links.pdf }
+      : null;
+}
 
-  if (items.length === 0) {
-    return null;
+function AboutParagraph({ paragraph }) {
+  if (typeof paragraph === "string") {
+    return <p>{paragraph}</p>;
   }
 
   return (
-    <div className="publication-actions">
-      {items.map((item) => (
-        <a
-          key={item.key}
-          href={links[item.key]}
-          target="_blank"
-          rel="noreferrer"
-          className="publication-action"
-        >
-          {item.label}
-        </a>
-      ))}
-    </div>
+    <p>
+      {paragraph.map((part, index) =>
+        typeof part === "string" ? (
+          part
+        ) : (
+          <a key={`${part.url}-${index}`} href={part.url} target="_blank" rel="noreferrer">
+            {part.text}
+          </a>
+        ),
+      )}
+    </p>
   );
 }
 
 function PublicationCard({ item }) {
-  const [openPanel, setOpenPanel] = useState(null);
-
-  const togglePanel = (panel) => {
-    setOpenPanel((current) => (current === panel ? null : panel));
-  };
+  const publicationLink = getPublicationLink(item.links);
 
   return (
     <article className="publication-card-rich">
@@ -208,7 +212,20 @@ function PublicationCard({ item }) {
       <div className="publication-body">
         <div className="publication-header-row">
           <div className="publication-main">
-            <h3>{item.title}</h3>
+            <h3>
+              {publicationLink ? (
+                <a
+                  href={publicationLink.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="publication-title-link"
+                >
+                  {item.title}
+                </a>
+              ) : (
+                item.title
+              )}
+            </h3>
             <p className="list-subtitle">{item.authors}</p>
             <p className="publication-venue">
               <em>{item.venue}</em>
@@ -216,40 +233,6 @@ function PublicationCard({ item }) {
           </div>
           <p className="publication-year-display">{item.year}</p>
         </div>
-
-        <div className="publication-actions">
-          <button
-            type="button"
-            className={`publication-action publication-action--button ${
-              openPanel === "abstract" ? "publication-action--active" : ""
-            }`}
-            onClick={() => togglePanel("abstract")}
-          >
-            ABS
-          </button>
-          <button
-            type="button"
-            className={`publication-action publication-action--button ${
-              openPanel === "citation" ? "publication-action--active" : ""
-            }`}
-            onClick={() => togglePanel("citation")}
-          >
-            CITE
-          </button>
-          <PublicationActions links={item.links} />
-        </div>
-
-        {openPanel === "abstract" ? (
-          <div className="publication-panel">
-            <p>{item.abstract}</p>
-          </div>
-        ) : null}
-
-        {openPanel === "citation" ? (
-          <div className="publication-panel">
-            <p>{item.citation}</p>
-          </div>
-        ) : null}
       </div>
     </article>
   );
@@ -298,6 +281,12 @@ function App() {
   }, {});
   const sortedPublicationYears = Object.keys(publicationsByYear).sort(
     (a, b) => Number(b) - Number(a),
+  );
+  const teachingExperience = academicExperience.filter((item) =>
+    item.role.toLowerCase().includes("teaching"),
+  );
+  const researchExperience = academicExperience.filter(
+    (item) => !item.role.toLowerCase().includes("teaching"),
   );
 
   return (
@@ -396,8 +385,8 @@ function App() {
             <SectionHeading title="About Me" />
             <div className="accent-bar" />
             <div className="prose-block prose-block--large">
-              {about.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+              {about.map((paragraph, index) => (
+                <AboutParagraph key={index} paragraph={paragraph} />
               ))}
             </div>
 
@@ -438,6 +427,76 @@ function App() {
 
             <div className="academic-sections">
               <section className="academic-section">
+                <h3 className="academic-heading">Technical Skills</h3>
+                <div className="service-list">
+                  {skills.map((item) => (
+                    <p key={item.category}>
+                      <strong>{item.category}:</strong> {item.items.join(", ")}
+                    </p>
+                  ))}
+                </div>
+              </section>
+
+              <section className="academic-section">
+                <h3 className="academic-heading">Industry Experience</h3>
+                <ol className="academic-list">
+                  {industryExperience.map((item) => (
+                    <li key={`${item.role}-${item.period}`} className="academic-item">
+                      <div className="experience-title-row">
+                        <h4>{item.role}</h4>
+                        <p className="experience-location">{item.location}</p>
+                      </div>
+                      <p className="academic-org">{item.organization}</p>
+                      <p className="academic-period">{item.period}</p>
+                      <p className="academic-detail">{item.details}</p>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+
+              <section className="academic-section">
+                <h3 className="academic-heading">Research Experience</h3>
+                <ol className="academic-list">
+                  {researchExperience.map((item) => (
+                    <li key={`${item.role}-${item.period}`} className="academic-item">
+                      <div className="experience-title-row">
+                        <h4>{item.role}</h4>
+                        <p className="experience-location">{item.location}</p>
+                      </div>
+                      <p className="academic-org">
+                        {item.organizationUrl ? (
+                          <a href={item.organizationUrl} target="_blank" rel="noreferrer">
+                            {item.organization}
+                          </a>
+                        ) : (
+                          item.organization
+                        )}
+                      </p>
+                      <p className="academic-period">{item.period}</p>
+                      <p className="academic-detail">{item.details}</p>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+
+              <section className="academic-section">
+                <h3 className="academic-heading">Teaching Experience</h3>
+                <ol className="academic-list">
+                  {teachingExperience.map((item) => (
+                    <li key={`${item.role}-${item.period}`} className="academic-item">
+                      <div className="experience-title-row">
+                        <h4>{item.role}</h4>
+                        <p className="experience-location">{item.location}</p>
+                      </div>
+                      <p className="academic-org">{item.organization}</p>
+                      <p className="academic-period">{item.period}</p>
+                      <p className="academic-detail">{item.details}</p>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+
+              <section className="academic-section">
                 <h3 className="academic-heading">Education</h3>
                 <ol className="academic-list">
                   {education.map((item) => (
@@ -471,59 +530,6 @@ function App() {
                     </li>
                   ))}
                 </ol>
-              </section>
-
-              <section className="academic-section">
-                <h3 className="academic-heading">Research Experience</h3>
-                <ol className="academic-list">
-                  {academicExperience.map((item) => (
-                    <li key={`${item.role}-${item.period}`} className="academic-item">
-                      <div className="experience-title-row">
-                        <h4>{item.role}</h4>
-                        <p className="experience-location">{item.location}</p>
-                      </div>
-                      <p className="academic-org">
-                        {item.organizationUrl ? (
-                          <a href={item.organizationUrl} target="_blank" rel="noreferrer">
-                            {item.organization}
-                          </a>
-                        ) : (
-                          item.organization
-                        )}
-                      </p>
-                      <p className="academic-period">{item.period}</p>
-                      <p className="academic-detail">{item.details}</p>
-                    </li>
-                  ))}
-                </ol>
-              </section>
-
-              <section className="academic-section">
-                <h3 className="academic-heading">Industry Experience</h3>
-                <ol className="academic-list">
-                  {industryExperience.map((item) => (
-                    <li key={`${item.role}-${item.period}`} className="academic-item">
-                      <div className="experience-title-row">
-                        <h4>{item.role}</h4>
-                        <p className="experience-location">{item.location}</p>
-                      </div>
-                      <p className="academic-org">{item.organization}</p>
-                      <p className="academic-period">{item.period}</p>
-                      <p className="academic-detail">{item.details}</p>
-                    </li>
-                  ))}
-                </ol>
-              </section>
-
-              <section className="academic-section">
-                <h3 className="academic-heading">Technical Skills</h3>
-                <div className="service-list">
-                  {skills.map((item) => (
-                    <p key={item.category}>
-                      <strong>{item.category}:</strong> {item.items.join(", ")}
-                    </p>
-                  ))}
-                </div>
               </section>
             </div>
           </section>

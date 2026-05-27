@@ -43,6 +43,11 @@ export const iconLinks = [
     label: "LinkedIn",
     url: "https://www.linkedin.com/in/abhiram-kandiyana-239029169/",
   },
+  {
+    icon: "resume",
+    label: "CV",
+    url: "https://drive.google.com/file/d/1NCPi4BE5ZeYuTrXJ8lsBoiJPLrgNlQsR/view?usp=sharing",
+  },
   // {
   //   icon: "x",
   //   label: "X",
@@ -51,35 +56,68 @@ export const iconLinks = [
 ];
 
 export const about = [
-  "I’m Abhiram Kandiyana, a Ph.D. candidate in Artificial Intelligence at the University of South Florida. My research is mainly about making foundation LLMs useful in specialized, high-stakes settings like biomedical microscopy, where labeled data is limited and expert annotation is expensive.", 
-  "I’ve also worked on the systems side, building deployment pipelines with Docker, AWS, and vLLM to make these methods usable in practice. And outside academia, as a co-founder and founding engineer at Mindlr, I led a team building a RAG-based AI search system using LangChain, Pinecone, AWS, and Hugging Face models.",
-  "A common thread across all of this is that I like working on messy problems where the data is noisy, the labels are expensive, and success comes from designing the pipeline carefully, evaluating it the way the end user would.",
-  ];
+  [
+    "I’m a Ph.D. candidate in Computer Science and Engineering at the ",
+    {
+      text: "Bellini College, University of South Florida",
+      url: "https://www.usf.edu/ai-cybersecurity-computing/",
+    },
+    " advised by ",
+    {
+      text: "Dr. Dmitry Goldgof",
+      url: "https://scholar.google.com/citations?hl=en&user=yQS_n0gAAAAJ",
+    },
+    " and ",
+    {
+      text: "Dr. Lawrence O. Hall",
+      url: "https://scholar.google.com/citations?user=AKHplAUAAAAJ&hl=en",
+    },
+    ". My current research is in computer vision and generative AI with special focus on multi-modal LLMs, and data-efficient training in high-stakes settings like neuroscience and oncology.",
+  ],
+  "Outside academia, I co-founded and was the founding engineer at a startup, where I led a team building a RAG-based AI search system using LangChain, Pinecone, vLLM, AWS, and Hugging Face.",
+  [
+    "You can find my CV ",
+    {
+      text: "here",
+      url: "https://drive.google.com/file/d/1NCPi4BE5ZeYuTrXJ8lsBoiJPLrgNlQsR/view?usp=sharing",
+    },
+    ".",
+  ],
+];
 
 export const researchAreas = [
   {
-    title: "Microscopy Image Analysis",
-    description:
-      "Developing automated classification, quantification, and explanation pipelines for microscopy imagery with an emphasis on biomedical utility and expert interpretability.",
+    title: "Data efficient Training",
   },
   {
-    title: "Vision-Language Models for Science",
-    description:
-      "Adapting foundation VLMs such as GPT-4O, LLaVA, NVLM, and related systems to specialized scientific domains where data is limited and annotation is expensive.",
+    title: "Vision-Language Models",
   },
   {
-    title: "Efficient AI Systems",
-    description:
-      "Designing workflows that combine prompt engineering, parameter-efficient adaptation, segmentation pipelines, and deployment infrastructure to improve both accuracy and usability.",
+    title: "Prompt Tuning",
   },
+  {
+    title: "Biomedical Image Analysis",
+  }
 ];
 
 export const highlights = [
   {
     date: "2026",
+    title: "Succesfully defended my dissertation.",
+    description:
+      "Actively looking for roles in the AI/CV space",
+  },
+  {
+    date: "2026",
+    title: "Capital One AI Foundations internship",
+    description:
+      "Incoming Data Science Intern on the LLM core Team in New York City, focused on large language model foundation work within Capital One's AI Foundations organization.",
+  },
+  {
+    date: "2026",
     title: "Active Prompt Tuning paper accepted to CVPR workshops",
     description:
-      "Our Active Prompt Tuning paper was accepted to the CVPR workshops, and I will present the work on June 3 at the PHAROS-AIF-MIH workshop.",
+      "Our latest work on Active Prompt Tuning was accepted to the CVPR workshops, and I will present the work on June 3 at the PHAROS-AIF-MIH workshop.",
   },
   {
     date: "2025",
@@ -87,21 +125,25 @@ export const highlights = [
     description:
       "Published work on efficient microscopy image classification using active prompt tuning strategies for GPT-4O-class systems.",
   },
-  {
-    date: "2025",
-    title: "CBMS publication on multimodal few-shot prompting",
-    description:
-      "Contributed to a study on pain classification in infant cry sounds using few-shot prompting with vision-language modeling techniques.",
-  },
-  {
-    date: "2024",
-    title: "Master's thesis completed at USF",
-    description:
-      "Completed a thesis on semi-automated cell annotation using deep learning, focused on reducing manual effort in microscopy workflows.",
-  }
 ];
 
 export const publications = [
+  {
+    id: "cvpr-2026",
+    title:
+      "A Human-in-the-Loop Framework for Efficient Prompt Selection in Microscopy Vision–Language Models",
+    venue: "IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops",
+    year: "2026",
+    authors:
+      "Abhiram Kandiyana, Ankur Mali, Lawrence O. Hall, Peter R. Mouton , Dmitry B. Goldgof",
+    abstract: "",
+    citation:
+      "Kandiyana, A., Mouton, P. R., Kolinko, Y., Hall, L. O., & Goldgof, D. B. (2025). Active Prompt Tuning Enables GPT-4O to Do Efficient Classification of Microscopy Images. IEEE International Symposium on Biomedical Imaging (ISBI).",
+    thumbnailLabel: "CVPR 2026",
+    links: {
+      DOI: "https://arxiv.org/abs/2605.20495",
+    },
+  },
   {
     id: "isbi-2025-apt",
     title:
@@ -116,8 +158,7 @@ export const publications = [
       "Kandiyana, A., Mouton, P. R., Kolinko, Y., Hall, L. O., & Goldgof, D. B. (2025). Active Prompt Tuning Enables GPT-4O to Do Efficient Classification of Microscopy Images. IEEE International Symposium on Biomedical Imaging (ISBI).",
     thumbnailLabel: "ISBI 2025",
     links: {
-      pdf: "https://arxiv.org/abs/2411.02639",
-      website: "https://dblp.org/rec/conf/isbi/KandiyanaMKHG25.html",
+      DOI: "https://doi.org/10.1109/ISBI60581.2025.10981114",
     },
   },
   {
@@ -135,8 +176,7 @@ export const publications = [
       "McCofie, A., Kandiyana, A., Mouton, P. R., Sun, Y., & Goldgof, D. B. (2025). Few-Shot Prompting with Vision Language Model for Pain Classification in Infant Cry Sounds. IEEE International Symposium on Computer-Based Medical Systems (CBMS), 857-862.",
     thumbnailLabel: "CBMS 2025",
     links: {
-      doi: "https://doi.org/10.1109/CBMS65348.2025.00174",
-      website: "https://dblp.org/rec/conf/cbms/McCofieKM0G25",
+      DOI: "https://doi.org/10.1109/CBMS65348.2025.00174",
     },
   },
   {
@@ -154,8 +194,7 @@ export const publications = [
       "Kandiyana, A., Mouton, P. R., Hall, L. O., & Goldgof, D. B. (2024). Active Prompting of Vision Language Models for Human-in-the-Loop Classification and Explanation of Microscopy Images. IEEE International Symposium on Computer-Based Medical Systems (CBMS), 205-212.",
     thumbnailLabel: "CBMS 2024",
     links: {
-      website: "https://dblp.org/rec/conf/cbms/KandiyanaMHG24",
-      details: "https://researchr.org/publication/KandiyanaMHG24",
+      DOI: "https://doi.org/10.1109/CBMS61543.2024.00042"
     },
   },
   {
@@ -170,8 +209,7 @@ export const publications = [
       "Kandiyana, A. (2024). Semi-automated Cell Annotation Framework Using Deep Learning (Master's thesis). University of South Florida.",
     thumbnailLabel: "MS Thesis",
     links: {
-      pdf: "https://digitalcommons.usf.edu/etd/10269/",
-      website: "https://digitalcommons.usf.edu/etd/10269/",
+      PDF: "https://digitalcommons.usf.edu/etd/10269/",
     },
   },
 ];
@@ -241,7 +279,7 @@ export const industryExperience = [
   {
     period: "Jun 2026 - Aug 2026",
     role: "Data Science Intern",
-    organization: "Capital One AI Foundations - LLM Foundations Team",
+    organization: "Capital One",
     location: "New York City",
     details:
       "Incoming internship focused on data science and large language model foundation work within Capital One's AI Foundations organization.",
@@ -307,8 +345,8 @@ export const education = [
 
 export const awardsInvitations = [
   {
-    title: "NIH Entrepreneurship Bootcamp",
-    organization: "National Institutes of Health",
+    title: "Entrepreneurship Bootcamp",
+    organization: "National Institute of Health",
     year: "2025",
     description:
       "Participated as a key team member in a competitively selected entrepreneurship and research translation program, interviewing 40+ neuroscientists and researchers globally as part of customer discovery.",
