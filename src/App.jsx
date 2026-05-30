@@ -247,7 +247,7 @@ function App() {
   const [theme, setTheme] = useState("light");
   const sectionTabs = [
     { id: "about", label: "About" },
-    { id: "academic", label: "Academic" },
+    { id: "academic", label: "Experience" },
     { id: "publications", label: "Publications" },
     { id: "awards", label: "Awards/Invitations" },
   ];
@@ -432,7 +432,7 @@ function App() {
           </section>
         ) : activeTab === "academic" ? (
           <section className="content-section tab-panel">
-            <SectionHeading title="Academic Profile" />
+            <SectionHeading title="Experience" />
             <div className="accent-bar" />
 
             <div className="academic-sections">

@@ -74,7 +74,7 @@ export const about = [
     },
     ". My current research is in computer vision and generative AI with special focus on multi-modal LLMs, and data-efficient training in high-stakes settings like neuroscience and oncology.",
   ],
-  "Outside academia, I co-founded and was the founding engineer at a startup, where I led a team building a RAG-based AI search system using LangChain, Pinecone, vLLM, AWS, and Hugging Face.",
+  "Beyond my research work, I co-founded and was the founding engineer at a startup, where I led a team building a RAG-based AI search system using LangChain, Pinecone, vLLM, AWS, and Hugging Face.",
   [
     {
       text: "I am actively seeking Research Scientist roles.",
